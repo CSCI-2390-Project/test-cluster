@@ -1,9 +1,9 @@
 provider "google-beta" {
 
-  project = "ordinal-motif-270122"
+  project = "ms-demo-2390"
   credentials = file(var.service_account_key_path)
-  region  = "us-central1"
-  zone    = "us-central1-c"
+  region  = "us-east1"
+  zone    = "us-east1-b"
 
 }
 
@@ -36,7 +36,7 @@ resource "google_container_cluster" "primary" {
   }
 
   provisioner "local-exec" {
-    command = "gcloud container clusters get-credentials primary --zone us-central1-c --project ordinal-motif-270122"
+    command = "gcloud container clusters get-credentials primary --zone us-east1-b --project ms-demo-2390"
     interpreter = ["/bin/bash", "-c"]
     environment = {
       GOOGLE_APPLICATION_CREDENTIALS = var.service_account_key_path
@@ -46,13 +46,13 @@ resource "google_container_cluster" "primary" {
   # Set istio-injection by default into the `default` namespace. 
   # Thus, pods will automatically get Envoy inserted into them.
   provisioner "local-exec" {
-    command = "kubectl config use-context gke_ordinal-motif-270122_us-central1-c_primary; kubectl label namespace default istio-injection=enabled"
+    command = "kubectl config use-context ms-demo-2390_us-east1-b_primary; kubectl label namespace default istio-injection=enabled"
     interpreter = ["/bin/bash", "-c"]
   }
 
   provisioner "local-exec" {
     when    = destroy
-    command = "kubectl config delete-context gke_ordinal-motif-270122_us-central1-c_primary"
+    command = "kubectl config delete-context ms-demo-2390_us-east1-b_primary"
     interpreter = ["/bin/bash", "-c"]
   }
 

@@ -6,10 +6,6 @@ variable "password" {
   type = string
 }
 
-variable "bookinfo_apps_path" {
-  type = string
-}
-
-variable "add_configmap" {
+variable "yamls_folder_path" {
   type = string
 }

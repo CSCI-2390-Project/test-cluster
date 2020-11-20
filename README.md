@@ -27,11 +27,6 @@ Build the Q Coordination Engine (or `qbox`) and the Istio `BookInfo` application
  ```
 
 # Instructions
-Run command:
-```
-python3.7 DAG-parser.py DAG.json values.tfvars
-```
-This generates the manifest and all the configmaps needed according to the DAG specified in DAG.json.
 
 - Run `make build` to build a new cluster and deploy your YAML files.
 - Run `make destroy` to teardown the cluster and all YAMLs running on it.

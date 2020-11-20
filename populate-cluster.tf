@@ -11,18 +11,10 @@ provider "kubectl" {
 }
 
 data "kubectl_file_documents" "manifests" {
-    content = file(var.bookinfo_apps_path)
+    content = file(var.yamls_folder_path)
 }
 
-resource "null_resource" "add_configmap" {
-  provisioner "local-exec" {
-    command = var.add_configmap
-    interpreter = ["/bin/bash", "-c"]
-  }
-  depends_on = [google_container_cluster.primary]
-}
-
-resource "kubectl_manifest" "bookinfo" {
+resource "kubectl_manifest" "microservices" {
     for_each = toset(data.kubectl_file_documents.manifests.documents)
     yaml_body = each.value
 }
