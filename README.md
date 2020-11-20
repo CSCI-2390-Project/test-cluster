@@ -24,6 +24,7 @@ Build the Q Coordination Engine (or `qbox`) and the Istio `BookInfo` application
  ```
  service_account_key_path = "<full path to the service account key JSON file you generated as a prereq>"
  password = "<Kubernetes API password for use with kubectl; consult with other team member for this value>"
+ yaml_folders_path = "<Local file path to the folder containing Kubernetes manifests e.g. /microservices-demo/manifests/"
  ```
 
 # Instructions
