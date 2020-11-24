@@ -29,11 +29,11 @@ resource "google_container_cluster" "primary" {
     }
   }
 
-  addons_config {
-    istio_config {
-      disabled = "false"
-    }
-  }
+  # addons_config {
+  #   istio_config {
+  #     disabled = "true"
+  #   }
+  # }
 
   provisioner "local-exec" {
     command = "gcloud container clusters get-credentials primary --zone us-east1-b --project ms-demo-2390"
@@ -52,7 +52,7 @@ resource "google_container_cluster" "primary" {
 
   provisioner "local-exec" {
     when    = destroy
-    command = "kubectl config delete-context ms-demo-2390_us-east1-b_primary"
+    command = "kubectl config delete-context gke_ms-demo-2390_us-east1-b_primary"
     interpreter = ["/bin/bash", "-c"]
   }
 
@@ -64,9 +64,9 @@ output "cluster_name" {
 
 
 output "cluster_zone" {
-  value = google_container_cluster.primary.zone
+  value = google_container_cluster.primary.location
 }
 
 output "cluster_project" {
-  value = google_container_cluster.primary.zone
+  value = google_container_cluster.primary.location
 }

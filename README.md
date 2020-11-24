@@ -18,13 +18,12 @@ Build the Q Coordination Engine (or `qbox`) and the Istio `BookInfo` application
 
  - A Terraform cloud storage bucket that you have access to. This is used to store [Terraform state](https://www.terraform.io/docs/state/index.html) remotely so that teams can work together on the same resources. A bucket called `tfstate-backend` has already been created for you, and Terraform has already been configured to use it for state in this repo. If it is ever deleted, please create a new bucket and update `terraform-backend.tf` accordingly.  
 
-
  - A variable file called `values.tfvars` at the top-level of this repository. The following is a template, please replace the values:
 
  ```
  service_account_key_path = "<full path to the service account key JSON file you generated as a prereq>"
  password = "<Kubernetes API password for use with kubectl; consult with other team member for this value>"
- yaml_folders_path = "<Local file path to the folder containing Kubernetes manifests e.g. /microservices-demo/manifests/"
+ yaml_folders_path = "<Local file path to the folder containing Kubernetes manifests e.g. ../microservices-demo/kubernetes-manifests/"
  ```
 
 # Instructions
